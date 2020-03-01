@@ -1,0 +1,165 @@
+html {
+	font-size: 10px;
+	margin: 0;
+	padding: 0;
+}
+* {
+    box-sizing: border-box;
+}
+body {
+	font-family: "Lato", "Arial", sans-serif;
+  	font-weight: bold;
+	font-size: 1.6rem;
+	max-width: 1020px;
+	margin: 0 auto;
+}
+
+h2 {
+	font-size: 3rem;
+	line-height: 18px;
+	color: #666d89;
+	font-weight: 900;
+	padding-top: 69px;
+	padding-bottom: 26px;
+	letter-spacing: -0.006em;
+	margin: 0;
+}
+h3 {
+	font-size: 1.8rem;
+	line-height: 18px;
+	color: #666d89;
+	font-weight: 900;
+	padding-top: 16px;
+	padding-bottom: 12px;
+	letter-spacing: -0.01em;
+  	line-height: 0.8em;
+	margin: 0;
+}
+p {
+	width: 940px;
+	font-family: "Lato";
+	font-size: 1.8rem;
+	line-height: 30px;
+	color: #767e9e;
+	font-weight: 300;
+	
+	margin: 0;
+}
+.wrapper {
+	max-width: 940px;
+	margin: 0 auto;
+}
+.portfolio {
+	background: #2d303a;
+	height: 870px;
+}
+.portfolio__content {
+	height: 864px;
+}
+.portfolio__description{
+	padding-top: 1px;
+}
+.portfolio__tags {
+	display: flex;
+	padding-top: 11px;	
+	padding-bottom: 19px;
+	margin-left: 1px;
+	text-align: justify;
+}
+.portfolio__tags :first-child{
+	padding-left: 7px;
+}
+.portfolio__tags :last-child{
+	margin-left: 9px;
+}
+
+.portfolio__tags > div + div {
+	margin-left: 10px;
+}
+.tag{
+	font-size: 1.2rem;
+	line-height: 20px;
+	color: #767e9e;
+	font-weight: 400;
+	cursor: pointer;
+	padding: 0px 6px;
+	border-radius: 5px;
+	
+}
+.tag:hover{
+	text-decoration: underline;
+	color: #ffffff;
+}
+.tag_bordered {
+	border: 1px solid #666d89;
+}
+.tag_selected {
+	border: 1px solid #c5c5c5;
+	color: #dedede;
+}
+.line {
+	height: 6px;
+}
+.portfolio .line_color {
+	background: #323746;
+}
+
+.layouts-4-column {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	max-height: 621px;
+	overflow: hidden;
+}
+.portfolio__image {
+	margin-bottom: 20px;
+}
+.about-us {
+	background: #f2f2f2;
+	height: 735px;
+}
+.about-us .wrapper{
+	height: 728px;
+}
+.about-us__title {
+	padding-top: 68px;
+	padding-bottom: 27px;
+}
+.about-us__description{
+  text-align: justify;
+}
+
+.layouts-3-column {
+	display: flex;
+	justify-content: space-between;
+	margin-top: 45px;
+}
+
+
+.employee__text {
+	width: 300px;
+	font-size: 1.2rem;
+	line-height: 21px;
+	color: #767e9e;
+	font-weight: 400;
+	margin-bottom: 24px;
+	text-align: justify;
+}
+.text_decor{
+	word-spacing: -1px;
+}
+.social-medias:not(.social-medias_last){
+	margin-left: 1px;
+}
+.social-medias:hover {
+	cursor: pointer;
+}
+.social-medias > img + img {
+	margin-left: 5px;
+}
+.about-us .line_color {
+	background: #ffffff;
+}
+img[alt="Miles"]{
+	margin-right: 1px;
+}
