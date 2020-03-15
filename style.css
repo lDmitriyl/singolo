@@ -12,7 +12,6 @@ body {
 	font-size: 1.6rem;
 	max-width: 1020px;
 	margin:0 auto;
-	
 }
 nav {
 	display: inline-block;
@@ -54,10 +53,21 @@ p{
 	max-width: 940px;
 	margin:0 auto;
 }
+.layouts-4-column {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	max-height: 621px;
+	overflow: hidden;
+}
 .header {
   height: 95px;
   background: #2d303a;
   color: #ffffff;
+}
+.flex{
+	display: flex;
+	align-items: center;
 }
 a:link {
 	color: #fff;
@@ -93,23 +103,58 @@ ul.navigation {
 .navigation > li.first {
 	 margin-left: auto;
 }
-.navigation > li.first > a {
+a:visited{
+	color : #ffffff;
+}
+li > a.active{
 	color:#ea676b;
 }
-.navigation > li a:hover {
+.navigation > li :hover {
 	color:#ea676b;
 	text-decoration: underline;
 }
 section.slider {
-	height: 600px;
+	height: 600px; 
+}
+.slider-container{
+	position: relative;
+	height: 594px;
+}
+.slider__item{
+	height: 100%;
+	width: 100%;
+}
+.display-off1  {
+	display: none;
+	position: absolute;
+	height: 334px;
+	width: 190px;
+	top: 117px;
+	left: 125px;
+	border-radius: 4px;
+	background-color: black;
+}
+.display-off2  {
+	display: none;
+	position: absolute;
+	height: 190px;
+	width: 335px;
+	top: 187px;
+	left: 484px;
+	border-radius: 4px;
+	background: black;
+}
+.slider-color	{
 	background: #f06c64;
-    position: relative;
+	height: 594px;
 }
 section.slider div.color {
 	background: #ea676b;
 }
-section.slider .slider__content {
+.slider__content {
+	width: 100%;
 	height: 594px;
+	position: absolute;
 }
 section.slider .slider__img-vertical {
     position: absolute;
@@ -222,6 +267,7 @@ p.our-service__desc {
 	background: #2d303a;
 	height: 870px;
 }
+
 .portfolio__content {
 	height: 864px;
 }
@@ -280,16 +326,16 @@ p.our-service__desc {
 .portfolio .line_color {
 	background: #323746;
 }
-
-.layouts-4-column {
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: space-between;
-	max-height: 621px;
+.portfolio__image {
+	cursor: pointer;
+	margin-bottom: 20px;
+	box-sizing: border-box;
+	width: 220px;
+	height: 187px;
 	overflow: hidden;
 }
-.portfolio__image {
-	margin-bottom: 20px;
+.portfolio__image-bordered{
+	border: #F06C64 solid 5px;
 }
 .about-us {
 	background: #f2f2f2;
@@ -475,6 +521,34 @@ input::-moz-placeholder, textarea::-webkit-input-placeholder {
 .contact-us__form .submit:hover{
 	text-decoration: underline;
 	color:#ffffff;
+}
+.hidden{
+	display: none;
+}
+.message-block{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	background: #0008;
+}
+.message{
+	position: absolute;
+	width: 250px;
+	height: 150px;
+	top: 40%;
+	left: 30%;
+	line-height: 26px;
+	border: #2d303a solid 2px;
+	text-align: left;
+	overflow: hidden;
+	background: #fff;
+}
+.close-contact-btn{
+	position: absolute;
+	bottom: 18%;
+	left: 50%;
 }
 .contact-us__information{
 	flex-basis: 300px;

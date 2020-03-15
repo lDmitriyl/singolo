@@ -9,15 +9,17 @@
   </head>
   <body>
     <header class="header">
-      <div class="wrapper">
-        <h1 class="logo">SINGOLO<span>*</span></h1>
+      <div class="wrapper flex">
+        <div class="logo">
+          <h1>SINGOLO<span>*</span></h1>
+        </div>
         <nav class="header__navigation">
-          <ul class="navigation">
-            <li class="first"><a href="#">HOME</a></li>
-            <li><a href="#">SERVICES</a></li>
-            <li><a href="#">PORTFOLIO</a></li>
-            <li><a href="#">ABOUT</a></li>
-            <li><a href="#">CONTACT</a></li>
+          <ul id="menu" class="navigation">
+            <li class="first"><a class="active" href="#">HOME</a></li>
+            <li><a href="#service">SERVICES</a></li>
+            <li><a href="#portfolio">PORTFOLIO</a></li>
+            <li><a href="#about-us">ABOUT</a></li>
+            <li><a href="#contact-us">CONTACT</a></li>
           </ul>
         </nav>
       </div>
@@ -25,17 +27,24 @@
     </header>
     <main>
       <section class="slider">
-        <div class="wrapper">
-          <div class="slider__content">
-            <img src="assets/phone1.png" alt="phone" class="slider__img-vertical" width="240" height="483">
-            <img src="assets/phone2.png" alt="phone" class="slider__img-horizontal" width="484" height="240">
-            <div class="slider__chev-prev"></div>
-            <div class="slider__chev-next"></div>
+        <div class="slider-container">
+          <div id="slider-content" class="slider__content">
+            <div class="slider__item">
+              <div class="slider-color">
+                <img id="iphone1" src="assets/phone1.png" alt="phone" class="slider__img-vertical" width="240" height="483">
+                <img id="iphone2" src="assets/phone2.png" alt="phone" class="slider__img-horizontal" width="484" height="240">
+              </div>
+            </div>
+            <img class="slider__item" src="assets/slider.png" alt="phone" class="slider__img-vertical">
           </div>
+          <div id="display-off1" class="display-off1"></div>
+          <div id="display-off2" class="display-off2"></div>
+          <div id="prev-btn" class="slider__chev-prev"></div>
+          <div id="next-btn" class="slider__chev-next"></div>
         </div>
-          <div class="line color"></div>
+        <div class="line color"></div>
       </section>
-      <section class="service">
+      <section id="service" class="service">
         <div class="wrapper">
           <div class="service-content">
             <div class="service__description">
@@ -108,36 +117,36 @@
         </div>
           <div class="line color"></div>
       </section>
-      <section class="portfolio">
+      <section id="portfolio" class="portfolio">
         <div class="wrapper">
           <div class="portfolio__content">
             <h2 class="portfolio__title">Portfolio</h2>
             <p class="portfolio__description">Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.</p>
-            <div class="portfolio__tags tags">
-                <div class="tag tag_selected">All</div>
-                <div class="tag tag_bordered">Web Design</div>
-                <div class="tag tag_bordered">Graphic Design</div>
-                <div class="tag tag_bordered">Artwork</div>
+            <div id="portfolio-tags" class="portfolio__tags tags">
+                <div id="All" class="tag tag_bordered tag_selected">All</div>
+                <div id="Web-Design" class="tag tag_bordered">Web Design</div>
+                <div id="Graphic-Design" class="tag tag_bordered">Graphic Design</div>
+                <div id="Artwork" class="tag tag_bordered">Artwork</div>
             </div>
-            <div class="layouts-4-column">
-              <img class="portfolio__image" src="assets/picture_1.png" alt="picture_1">
-              <img class="portfolio__image" src="assets/picture_2.png" alt="picture_2">
-              <img class="portfolio__image" src="assets/picture_3.png" alt="picture_3">
-              <img class="portfolio__image" src="assets/picture_4.png" alt="picture_4">
-              <img class="portfolio__image" src="assets/picture_5.png" alt="picture_5">
-              <img class="portfolio__image" src="assets/picture_6.png" alt="picture_6">
-              <img class="portfolio__image" src="assets/picture_7.png" alt="picture_7">
-              <img class="portfolio__image" src="assets/picture_8.png" alt="picture_8">
-              <img class="portfolio__image" src="assets/picture_9.png" alt="picture_9">
-              <img class="portfolio__image" src="assets/picture_10.png" alt="picture_10">
-              <img class="portfolio__image" src="assets/picture_11.png" alt="picture_11">
-              <img class="portfolio__image" src="assets/picture_12.png" alt="picture_12">
+            <div id="portfolio-images"class="layouts-4-column portfolio__container">
+              <div class="portfolio__image"><img src="assets/picture_1.png" alt="picture_1"></div>
+              <div class="portfolio__image"><img src="assets/picture_2.png" alt="picture_2"></div>
+              <div class="portfolio__image"><img src="assets/picture_3.png" alt="picture_3"></div>
+              <div class="portfolio__image"><img src="assets/picture_4.png" alt="picture_4"></div>
+              <div class="portfolio__image"><img src="assets/picture_5.png" alt="picture_5"></div>
+              <div class="portfolio__image"><img src="assets/picture_6.png" alt="picture_6"></div>
+              <div class="portfolio__image"><img src="assets/picture_7.png" alt="picture_7"></div>
+              <div class="portfolio__image"><img src="assets/picture_8.png" alt="picture_8"></div>
+              <div class="portfolio__image"><img src="assets/picture_9.png" alt="picture_9"></div>
+              <div class="portfolio__image"><img src="assets/picture_10.png" alt="picture_10"></div>
+              <div class="portfolio__image"><img src="assets/picture_11.png" alt="picture_11"></div>
+              <div class="portfolio__image"><img src="assets/picture_12.png" alt="picture_12"></div> 
             </div>
           </div>
         </div>
         <div class="line line_color"></div>
       </section>
-      <section class="about-us">
+      <section id="about-us" class="about-us">
         <div class="wrapper">
          <h2 class="about-us__title">About Us</h2>
          <p class="about-us__description">Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum. Duis mollis, non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh.</p>
@@ -185,7 +194,7 @@
         </div>
         <div class="line line_color"></div>
       </section> 
-      <section class="contact-us">
+      <section id="contact-us" class="contact-us">
         <div class="wrapper">
           <div class="contact-us__content">
             <h2 class="contact-us__title">Get a Quote</h2>
@@ -193,12 +202,20 @@
             <div class="layouts-2-column contact-us__register">
               <div class="contact-us__form">
                 <form action="#" method="post">
-                  <input type="text" name="name" placeholder="Name (Required)" pattern="[a-zA-Z]+" required>
-                  <input type="email" name="email" placeholder="Email (Required)" pattern=".+@[a-zA-Z]+\.com" required>
-                  <input type="text" name="subject" placeholder="Subject">
-                  <textarea name="project" placeholder="Describe your project in detail..."></textarea>
-                  <button type="submit" class="submit">Submit</button>
+                  <input type="text" name="name" id="name" placeholder="Name (Required)"  required>
+                  <input type="email" name="email" id="email" placeholder="Email (Required)" required>
+                  <input type="text" name="subject" id="subject" placeholder="Subject">
+                  <textarea name="project" id="project" placeholder="Describe your project in detail..."></textarea>
+                  <button type="submit" id="contact-btn" class="submit">Submit</button>
                 </form>
+                <div id="message-block" class="message-block hidden">
+                  <div id="message" class="message">
+                    <p>Письмо отправлено</p>
+                    <p><span id="subj-text">Без темы</span></p>
+                    <p><span id="proj-text">Без описания</span></p>
+                  </div>
+                  <button type="submit" id="close-contact-btn" class="close-contact-btn">OK</button>
+                </div>
               </div>
               <div class="contact-us__information">
                 <h3 class="contact-us__inform-title">Contact Information</h3>
@@ -232,5 +249,6 @@
         </div>
       </footer>
     </main>
+    <script src="script.js"></script>
   </body>
 </html>
