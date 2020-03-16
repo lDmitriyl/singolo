@@ -144,6 +144,22 @@ section.slider {
 	border-radius: 4px;
 	background: black;
 }
+.iphone-btn1{
+	position: absolute;
+	border-radius: 50%;
+	width: 50px;
+	height: 50px;
+	left: 194px;
+    bottom: 87px;
+}
+.iphone-btn2{
+	position: absolute;
+	border-radius: 50%;
+	width: 50px;
+	height: 50px;
+	left: 430px;
+    bottom: 288px;
+}
 .slider-color	{
 	background: #f06c64;
 	height: 594px;

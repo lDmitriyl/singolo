@@ -3,11 +3,11 @@ const MENU = document.getElementById('menu');
 const SLIDERS = document.getElementById('slider-content');
 const PREV_BTN = document.getElementById('prev-btn');
 const NEXT_BTN = document.getElementById('next-btn');
-const iphone1 = document.getElementById("iphone1");
-const iphone2 = document.getElementById("iphone2");
-const DISPLAY_OFF1 = document.getElementById("display-off1");
-const DISPLAY_OFF2 = document.getElementById("display-off2");
-const PORTFOLIO = document.querySelector('.portfolio__container');
+const iphone1 = document.getElementById('iphone-btn1');
+const iphone2 = document.getElementById('iphone-btn2');
+const DISPLAY_OFF1 = document.getElementById('display-off1');
+const DISPLAY_OFF2 = document.getElementById('display-off2');
+const PORTFOLIO = document.getElementById('portfolio-images');
 const PORTFOLIO_TAGS = document.getElementById('portfolio-tags');
 const SUBMIT = document.getElementById('contact-btn');
 const CLOSE_SUBMIT = document.getElementById('close-contact-btn');
@@ -25,12 +25,12 @@ let displayOff1 = false;
 let displayOff2 = false;
 iphone1.addEventListener('click', (e) => {
   displayOff1 = !displayOff1;
-  displayOff1 ? DISPLAY_OFF1.style.display = "block" : DISPLAY_OFF1.style.display = "none";
+  displayOff1 ? DISPLAY_OFF1.style.display = 'block' : DISPLAY_OFF1.style.display = 'none';
 });
 
 iphone2.addEventListener('click', (e) => {
   displayOff2 = !displayOff2;
-  displayOff2 ? DISPLAY_OFF2.style.display = "block" : DISPLAY_OFF2.style.display = "none";
+  displayOff2 ? DISPLAY_OFF2.style.display = 'block' : DISPLAY_OFF2.style.display = 'none';
 });
 
 //sliders
@@ -49,9 +49,9 @@ function showSlides(n){
   slider[sliderIndex-1].style.display = 'block';
 }
 function plusSlider(n){
-  DISPLAY_OFF1.style.display = "none";
+  DISPLAY_OFF1.style.display = 'none';
     displayOff1 = false;
-    DISPLAY_OFF2.style.display = "none";
+    DISPLAY_OFF2.style.display = 'none';
     displayOff2 = false;
   showSlides(sliderIndex += n)
 }
@@ -66,10 +66,11 @@ NEXT_BTN.addEventListener('click',(event=>{
 
 // Portfolio
 
-PORTFOLIO_TAGS.addEventListener('click', (event => {
-  PORTFOLIO_TAGS.querySelectorAll('.tag').forEach(el => el.classList.remove('tag_selected'));
-  if(event.target.id != "portfolio-tags"){
-  event.target.classList.add('tag_selected');
+PORTFOLIO_TAGS.addEventListener('click', event => {
+  if(event.target.classList.contains('tag')){
+      PORTFOLIO_TAGS.querySelectorAll('.tag').forEach(el => el.classList.remove('tag_selected'));
+      event.target.classList.add('tag_selected');
+    
     for(i = 0; i < PORTFOLIO.children.length; i++){
       PORTFOLIO.children[i].style.order="0";
     }
@@ -86,39 +87,52 @@ PORTFOLIO_TAGS.addEventListener('click', (event => {
       }
     }
   }
-}))
+})
 
 PORTFOLIO.addEventListener('click', (event =>{
-PORTFOLIO.querySelectorAll('.portfolio__image').forEach(el => el.classList.remove('portfolio__image-bordered'))
-if(event.target.id != "portfolio-images")
-event.target.parentNode.classList.add('portfolio__image-bordered');
-}))
-
-//Contact-us
-
-SUBMIT.addEventListener('click', (event =>{
-  const SUBJECT = document.getElementById('subject').value;
-  const PROJECT = document.getElementById('project').value;
-  const NAME = document.getElementById('name').value;
-  const EMAIL = document.getElementById('email').value;
-  const VALID_NAME = /^[a-zA-Z]+[a-zA-Z0-9]+/.test(NAME);
-  const VALID_EMAIL = /.+@[a-zA-Z1-9]+\.+[a-z]/.test(EMAIL);
-
-  if(VALID_NAME == true && VALID_EMAIL == true){
-    if(SUBJECT != "") document.getElementById('subj-text').innerHTML = "Тема: " + SUBJECT;
-    if(PROJECT != "") document.getElementById('proj-text').innerHTML = "Описание: " + PROJECT;
-    event.preventDefault();
-    document.getElementById('message-block').classList.remove('hidden');
-  }else{
-    if(VALID_NAME == false){
-      alert("Enter the NAME field correctly (NAME must start with a letter)");
-      return;
+  if(event.target.parentNode.classList.contains('portfolio__image')){
+    if(event.target.parentNode.classList.contains('portfolio__image-bordered')){
+      event.target.parentNode.classList.remove('portfolio__image-bordered');
+    }else{
+    PORTFOLIO.querySelectorAll('.portfolio__image').forEach(el => el.classList.remove('portfolio__image-bordered'));
+    event.target.parentNode.classList.add('portfolio__image-bordered');
     }
-    if(VALID_EMAIL == false) alert("Enter the EMAIL field correctly(Example: web@mail.com)");
-    event.preventDefault();
   }
 }))
 
+//Contact-us
+document.querySelector('form').addEventListener('click', (e) =>{
+  event.preventDefault();
+})
+
+SUBMIT.addEventListener('click', event =>{
+  const SUBJECT = document.getElementById('subject').value.toString();
+  const PROJECT = document.getElementById('project').value.toString();
+  const NAME = document.getElementById('name').value;
+  const EMAIL = document.getElementById('email').value;
+  const VALID_NAME = validName(NAME);
+  const VALID_EMAIL = validEmail(EMAIL);
+  let theme = document.getElementById('subj-text');
+  let description = document.getElementById('proj-text');
+
+  if(VALID_NAME == true && VALID_EMAIL == true){
+    SUBJECT != "" ? theme.innerHTML = 'Тема: ' + SUBJECT : theme.innerHTML = 'Без темы';
+    PROJECT != "" ? description.innerHTML = 'Описание: ' + PROJECT : description.innerHTML ='Без описания';
+    document.getElementById('message-block').classList.remove('hidden');
+  }else{
+    if(VALID_NAME == false){
+      alert('Enter the NAME field correctly (NAME must start with a letter)');
+      return;
+    }
+    if(VALID_EMAIL == false) alert('Enter the EMAIL field correctly(Example: web@mail.com)');
+  }
+})
+function validName(name){
+ return /^[a-zA-Z]+[a-zA-Z0-9]+/.test(name);
+}
+function validEmail(email){
+  return /.+@[a-zA-Z1-9]+\.+[a-z]/.test(email);
+ }
 CLOSE_SUBMIT.addEventListener('click',(event => {
   document.getElementById('message-block').classList.add('hidden');
 }))
