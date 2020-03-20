@@ -1,6 +1,5 @@
 
 const MENU = document.getElementById('menu');
-const SLIDERS = document.getElementById('slider-content');
 const PREV_BTN = document.getElementById('prev-btn');
 const NEXT_BTN = document.getElementById('next-btn');
 const iphone1 = document.getElementById('iphone-btn1');
@@ -13,12 +12,28 @@ const SUBMIT = document.getElementById('contact-btn');
 const CLOSE_SUBMIT = document.getElementById('close-contact-btn');
 
 
+//document
+document.addEventListener('scroll', e => {
+  const position = window.scrollY;
+  const links = document.querySelectorAll('#menu a')
+  document.querySelectorAll('header,section').forEach(el => {
+    if(el.offsetTop <= position && (el.offsetTop + el.offsetHeight) > position){
+      links.forEach(link => {
+        link.classList.remove('active');
+        if(el.getAttribute('id') === link.getAttribute('href').substring(1)){
+          link.classList.add('active');
+        }
+      })
+    }
+  })
+
+})
 
 //header
-MENU.addEventListener('click',(event => {
+MENU.addEventListener('click',event => {
   MENU.querySelectorAll('a').forEach(el => el.classList.remove('active'));
   event.target.classList.add('active');
-}))
+})
 
 //mobile-display
 let displayOff1 = false;
@@ -33,8 +48,58 @@ iphone2.addEventListener('click', (e) => {
   displayOff2 ? DISPLAY_OFF2.style.display = 'block' : DISPLAY_OFF2.style.display = 'none';
 });
 
+function displayOff(){
+  DISPLAY_OFF1.style.display = 'none';
+    displayOff1 = false;
+    DISPLAY_OFF2.style.display = 'none';
+    displayOff2 = false;
+}
+
 //sliders
-let sliderIndex = 1;
+
+let sliderContent = document.querySelector('.slider__content');
+let slides = document.querySelectorAll('.slider__item');
+let pos = 0;
+let slideWidth =document.querySelector('body').scrollWidth;
+console.dir(slideWidth);
+
+sliderContent.style.width = slides.length * slideWidth + 'px';
+
+PREV_BTN.addEventListener('click',event=>{
+  pos--;
+  
+  if (pos < 0) {
+    let children = sliderContent.children;
+    sliderContent.style.transition = null;
+    sliderContent.style.left = -(pos + 2) * slideWidth + 'px';
+    sliderContent.prepend(children[slides.length - 1]);
+    children[0].offsetParent;
+    pos++;
+  }
+  
+  sliderContent.style.left = -(slideWidth * pos) + 'px';
+  sliderContent.style.transition = 'left 0.6s ease-in-out';
+  displayOff();
+})
+
+NEXT_BTN.addEventListener('click',event=>{
+  pos++;
+  
+  if (pos > slides.length -1) {
+    let children = sliderContent.children;
+    sliderContent.style.transition = null;
+    sliderContent.style.left = -(pos - 2) * slideWidth + 'px';
+    sliderContent.append(children[0]);
+    children[0].offsetParent;
+    pos--;
+    console.log(pos);
+  }
+  
+  sliderContent.style.left = -(slideWidth * pos) + 'px';
+  sliderContent.style.transition = 'left 0.6s ease-in-out';
+  displayOff();
+})
+/*let sliderIndex = 1;
 showSlides(sliderIndex);
 function showSlides(n){
   let slider=SLIDERS.querySelectorAll('.slider__item')
@@ -49,7 +114,7 @@ function showSlides(n){
   slider[sliderIndex-1].style.display = 'block';
 }
 function plusSlider(n){
-  DISPLAY_OFF1.style.display = 'none';
+    DISPLAY_OFF1.style.display = 'none';
     displayOff1 = false;
     DISPLAY_OFF2.style.display = 'none';
     displayOff2 = false;
@@ -62,7 +127,7 @@ PREV_BTN.addEventListener('click',(event=>{
 NEXT_BTN.addEventListener('click',(event=>{
   plusSlider(1);
   showSlides(slideIndex += n);
-}))
+}))*/
 
 // Portfolio
 
@@ -134,5 +199,6 @@ function validEmail(email){
   return /.+@[a-zA-Z1-9]+\.+[a-z]/.test(email);
  }
 CLOSE_SUBMIT.addEventListener('click',(event => {
+  document.querySelector('form').reset();
   document.getElementById('message-block').classList.add('hidden');
 }))

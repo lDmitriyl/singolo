@@ -8,37 +8,39 @@
     <title>Document</title>
   </head>
   <body>
-    <header class="header">
-      <div class="wrapper flex">
-        <div class="logo">
-          <h1>SINGOLO<span>*</span></h1>
+    <header id="home" class="header">
+      <div class="fixed">
+        <div class="wrapper flex">
+          <div class="logo">
+            <h1>SINGOLO<span>*</span></h1>
+          </div>
+          <nav class="header__navigation">
+            <ul id="menu" class="navigation">
+              <li class="first"><a class="active" href="#home">HOME</a></li>
+              <li><a href="#service">SERVICES</a></li>
+              <li><a href="#portfolio">PORTFOLIO</a></li>
+              <li><a href="#about-us">ABOUT</a></li>
+              <li><a href="#contact-us">CONTACT</a></li>
+            </ul>
+          </nav>
         </div>
-        <nav class="header__navigation">
-          <ul id="menu" class="navigation">
-            <li class="first"><a class="active" href="#">HOME</a></li>
-            <li><a href="#service">SERVICES</a></li>
-            <li><a href="#portfolio">PORTFOLIO</a></li>
-            <li><a href="#about-us">ABOUT</a></li>
-            <li><a href="#contact-us">CONTACT</a></li>
-          </ul>
-        </nav>
+        <div class="line color"></div>
       </div>
-      <div class="line color"></div>
     </header>
     <main>
       <section class="slider">
-        <div class="slider-container">
-          <div id="slider-content" class="slider__content">
-            <div class="slider__item">
-              <div class="slider-color">
+        <div class="slider__container">
+          <ul id="slider-content" class="slider__content" data-current="0">
+            <li class="slider__item slider_color">
                 <img src="assets/phone1.png" alt="phone" class="slider__img-vertical">
                 <img src="assets/phone2.png" alt="phone" class="slider__img-horizontal">
                 <div id="iphone-btn1"class="iphone-btn1"></div>
                 <div id="iphone-btn2"class="iphone-btn2"></div>
-              </div>
-            </div>
-            <img class="slider__item" src="assets/slider.png" alt="phone" class="slider__img-vertical">
-          </div>
+            </li>
+            <li>
+              <img class="slider__item" src="assets/slider.png" alt="phone" class="slider__img-vertical">
+            </li>
+          </ul>
           <div id="display-off1" class="display-off1"></div>
           <div id="display-off2" class="display-off2"></div>
           <div id="prev-btn" class="slider__chev-prev"></div>
@@ -130,7 +132,7 @@
                 <div id="Graphic-Design" class="tag tag_bordered">Graphic Design</div>
                 <div id="Artwork" class="tag tag_bordered">Artwork</div>
             </div>
-            <div id="portfolio-images"class="layouts-4-column portfolio__container">
+            <div id="portfolio-images"class="layout-4-column portfolio__container">
               <div class="portfolio__image"><img src="assets/picture_1.png" alt="picture_1"></div>
               <div class="portfolio__image"><img src="assets/picture_2.png" alt="picture_2"></div>
               <div class="portfolio__image"><img src="assets/picture_3.png" alt="picture_3"></div>
@@ -152,7 +154,7 @@
         <div class="wrapper">
          <h2 class="about-us__title">About Us</h2>
          <p class="about-us__description">Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum. Duis mollis, non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh.</p>
-         <div class="layouts-3-column"> 
+         <div class="layout-3-column about-us__content"> 
            <div class="employee">
              <img src="assets/employee/Jenes.png" alt="Jenes">
              <div class="employee__description">
@@ -213,8 +215,8 @@
                 <div id="message-block" class="message-block hidden">
                   <div id="message" class="message">
                     <p>Письмо отправлено</p>
-                    <p><span id="subj-text">Без темы</span></p>
-                    <p><span id="proj-text">Без описания</span></p>
+                    <p><span id="subj-text"></span></p>
+                    <p><span id="proj-text"></span></p>
                   </div>
                   <button type="submit" id="close-contact-btn" class="close-contact-btn">OK</button>
                 </div>
