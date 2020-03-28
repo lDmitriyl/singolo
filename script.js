@@ -12,8 +12,10 @@ const SUBMIT = document.getElementById('contact-btn');
 const CLOSE_SUBMIT = document.getElementById('close-contact-btn');
 
 
-//document
-document.addEventListener('scroll', e => {
+//document scroll
+document.addEventListener('scroll', scroll)
+
+function scroll(e){
   const position = window.scrollY;
   const links = document.querySelectorAll('#menu a')
   document.querySelectorAll('header,section').forEach(el => {
@@ -26,8 +28,7 @@ document.addEventListener('scroll', e => {
       })
     }
   })
-
-})
+}
 
 //header
 MENU.addEventListener('click',event => {
@@ -60,23 +61,20 @@ function displayOff(){
 let sliderContent = document.querySelector('.slider__content');
 let slides = document.querySelectorAll('.slider__item');
 let pos = 0;
-let slideWidth =document.querySelector('body').scrollWidth;
-console.dir(slideWidth);
-
-sliderContent.style.width = slides.length * slideWidth + 'px';
+let slideWidth =document.querySelector('body').clientWidth;
+console.dir(document.querySelector('body'));
 
 PREV_BTN.addEventListener('click',event=>{
   pos--;
-  
   if (pos < 0) {
     let children = sliderContent.children;
+    console.log(children);
     sliderContent.style.transition = null;
     sliderContent.style.left = -(pos + 2) * slideWidth + 'px';
     sliderContent.prepend(children[slides.length - 1]);
     children[0].offsetParent;
     pos++;
   }
-  
   sliderContent.style.left = -(slideWidth * pos) + 'px';
   sliderContent.style.transition = 'left 0.6s ease-in-out';
   displayOff();
@@ -84,18 +82,17 @@ PREV_BTN.addEventListener('click',event=>{
 
 NEXT_BTN.addEventListener('click',event=>{
   pos++;
-  
   if (pos > slides.length -1) {
     let children = sliderContent.children;
     sliderContent.style.transition = null;
     sliderContent.style.left = -(pos - 2) * slideWidth + 'px';
+    console.log(sliderContent.style.left);
     sliderContent.append(children[0]);
     children[0].offsetParent;
     pos--;
-    console.log(pos);
   }
-  
   sliderContent.style.left = -(slideWidth * pos) + 'px';
+  console.log(sliderContent.style.left);
   sliderContent.style.transition = 'left 0.6s ease-in-out';
   displayOff();
 })
@@ -135,20 +132,27 @@ PORTFOLIO_TAGS.addEventListener('click', event => {
   if(event.target.classList.contains('tag')){
       PORTFOLIO_TAGS.querySelectorAll('.tag').forEach(el => el.classList.remove('tag_selected'));
       event.target.classList.add('tag_selected');
-    
-    for(i = 0; i < PORTFOLIO.children.length; i++){
-      PORTFOLIO.children[i].style.order="0";
+    console.dir(PORTFOLIO);
+    let children = PORTFOLIO.children;
+    console.dir(children);
+    if(event.target.id == 'Web-Design'){
+      for(let i = 0; i < children.length; i++){
+        PORTFOLIO.append(children[0 + i]);
+      }
     }
-    if(event.target.id == 'Web-Design')PORTFOLIO.style.flexDirection = 'row-reverse';
-    if(event.target.id == 'All') PORTFOLIO.style.flexDirection = 'row';
+    if(event.target.id == 'All'){
+      for(let i = 1; i < children.length; i += 2){
+        PORTFOLIO.prepend(children[0 + i]);
+      }
+    }
     if(event.target.id == 'Graphic-Design'){
-      for(let i = 1; i < 12; i+=2){
-        PORTFOLIO.children[i].style.order="1";
+      for(let i = 0; i < children.length; i += 2){
+        PORTFOLIO.prepend(children[0 + i]);
       }
     }
     if(event.target.id == 'Artwork'){
-      for(i = 0; i < 12; i+=2){
-        PORTFOLIO.children[i].style.order='2';
+      for(let i = 1; i < children.length; i += 2){
+        PORTFOLIO.append(children[0 + i]);
       }
     }
   }
@@ -202,3 +206,41 @@ CLOSE_SUBMIT.addEventListener('click',(event => {
   document.querySelector('form').reset();
   document.getElementById('message-block').classList.add('hidden');
 }))
+
+/*burger*/
+
+const BURGER = document.querySelector('.burger-menu');
+const NAVBAR = document.querySelector('.header__navigation');
+const OVERLAY = document.querySelector('.overlay-mobile');
+let countOfClicks = 0;
+
+
+BURGER.addEventListener('click', (event) => {
+    countOfClicks = (countOfClicks+1)%2;
+    if (countOfClicks === 1) {
+        BURGER.classList.add('active');
+        OVERLAY.classList.add('active');
+        NAVBAR.classList.add('mobile-active-menu');
+        document.removeEventListener ('scroll', scroll);
+
+    } else {
+        BURGER.classList.remove('active');
+        NAVBAR.classList.remove('mobile-active-menu');
+        OVERLAY.classList.remove('active');
+        document.addEventListener ('scroll', scroll);
+    }
+});
+
+const MOBILEMENU = document.querySelector('#menu');
+
+MOBILEMENU.addEventListener('click', (event) => {
+    if (event.target.closest('ul li a')){
+        countOfClicks = (countOfClicks+1)%2;
+        NAVBAR.classList.remove('mobile-active-menu');
+        BURGER.classList.remove('active');
+        OVERLAY.classList.remove('active');
+        document.addEventListener('scroll', scroll);
+    }  else { 
+        event.target.stopPropagation();
+    }
+})
