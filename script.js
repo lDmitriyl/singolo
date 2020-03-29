@@ -31,10 +31,15 @@ function scroll(e){
 }
 
 //header
-MENU.addEventListener('click',event => {
-  MENU.querySelectorAll('a').forEach(el => el.classList.remove('active'));
-  event.target.classList.add('active');
-})
+MENU.addEventListener('click', (event) => {
+  if(event.target.closest('a')) {
+      MENU.querySelectorAll('li a').forEach(element => element.classList.remove('active'));
+      event.target.classList.add('active');
+  } else event.target.stopPropagation();
+});
+
+
+
 
 //mobile-display
 let displayOff1 = false;
@@ -62,13 +67,11 @@ let sliderContent = document.querySelector('.slider__content');
 let slides = document.querySelectorAll('.slider__item');
 let pos = 0;
 let slideWidth =document.querySelector('body').clientWidth;
-console.dir(document.querySelector('body'));
 
 PREV_BTN.addEventListener('click',event=>{
   pos--;
   if (pos < 0) {
     let children = sliderContent.children;
-    console.log(children);
     sliderContent.style.transition = null;
     sliderContent.style.left = -(pos + 2) * slideWidth + 'px';
     sliderContent.prepend(children[slides.length - 1]);
@@ -82,49 +85,22 @@ PREV_BTN.addEventListener('click',event=>{
 
 NEXT_BTN.addEventListener('click',event=>{
   pos++;
-  if (pos > slides.length -1) {
-    let children = sliderContent.children;
-    sliderContent.style.transition = null;
-    sliderContent.style.left = -(pos - 2) * slideWidth + 'px';
-    console.log(sliderContent.style.left);
-    sliderContent.append(children[0]);
-    children[0].offsetParent;
-    pos--;
-  }
+  let children = sliderContent.children;
+
   sliderContent.style.left = -(slideWidth * pos) + 'px';
-  console.log(sliderContent.style.left);
   sliderContent.style.transition = 'left 0.6s ease-in-out';
+  pos--;
+
+  function set() {
+    sliderContent.style.transition = null;
+    sliderContent.append(children[0]);
+    sliderContent.style.left = -(slideWidth * pos) + 'px';
+    children[0].offsetParent;
+  }
+  
+  setTimeout(set, 550);
   displayOff();
 })
-/*let sliderIndex = 1;
-showSlides(sliderIndex);
-function showSlides(n){
-  let slider=SLIDERS.querySelectorAll('.slider__item')
-  if(n < 1){
-    sliderIndex = slider.length;
-  }else if(n > slider.length){
-    sliderIndex = 1;
-  }
-  for(i = 0; i < slider.length; i++){
-    slider[i].style.display = 'none';
-  }
-  slider[sliderIndex-1].style.display = 'block';
-}
-function plusSlider(n){
-    DISPLAY_OFF1.style.display = 'none';
-    displayOff1 = false;
-    DISPLAY_OFF2.style.display = 'none';
-    displayOff2 = false;
-  showSlides(sliderIndex += n)
-}
-PREV_BTN.addEventListener('click',(event=>{
-  plusSlider(-1);
-  showSlides(slideIndex += n);
-}))
-NEXT_BTN.addEventListener('click',(event=>{
-  plusSlider(1);
-  showSlides(slideIndex += n);
-}))*/
 
 // Portfolio
 
